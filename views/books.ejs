@@ -26,14 +26,18 @@
               <th><%= data[i].id%></th>
               <td><%= data[i].category%></td>
               <td><%= data[i].name%></td>                    
-              <td><%= data[i].author%></td>                    
+              <td><%= data[i].author%></td>
+              <td>
+                <a href="/login">order</a>
+              </td>
+
             </td>
           </tr>
           <% }
                    
            }else{ %>
                <tr>
-                  <td colspan="3">No Student</td>
+                  <td colspan="3">No books</td>
                </tr>
             <% } %>   
         

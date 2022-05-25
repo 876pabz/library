@@ -3,11 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var booksRouter = require('./routes/books');
 var loginRouter = require('./routes/login');
+var requestsRouter = require('./routes/requests');
+
 
 
 var app = express();
@@ -22,10 +25,23 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+/////Session Settings
+app.use(cookieParser());
+app.use(cookieParser());
+app.use(session({
+  secret: 'qwerty1234',
+  resave:false,
+  saveUninitialized: true,
+  cookie:{maxAge: 3600000}
+}))
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/books', booksRouter);
 app.use('/login', loginRouter);
+app.use('/requests', requestsRouter);
 
 
 
